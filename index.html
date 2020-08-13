@@ -42,16 +42,20 @@
 const playSound = (sound) => {
     sound.play();
 }
-//our function to get a random color
-const getRandomColor = () => `#${Math.floor(Math.random()*16777215).toString(16)}`; 
+
+
 
 //we can change the number of sounds if we add more sound to the folder.
 // a new button will be automagically added!
-const numSounds = 4;
+const numSounds = 7;
 const sounds = Array.from({ length: numSounds}, (e, i) => new Howl({ src: `sounds/${i}.mp3`, html5: false, volume: 0.9, loop: false }));
+
 //let's make an array of random colors
+//our function to get a random color
+const getRandomColor = () => `#${Math.floor(Math.random()*16777215).toString(16)}`; 
 const colors = Array.from({ length: numSounds }, () => getRandomColor() );
 console.log(colors);
+
 //grab our container
 const container = document.querySelector('.container');
 //the number of buttons will increase if the number of sounds is
@@ -70,6 +74,8 @@ const buttons = Array.from({ length: numButtons}, (element, index) => makeDiv(in
 console.log(buttons);
 //add the buttons to the container
 buttons.forEach(button => container.appendChild(button));
+
+
 //add an event listener to each button
 buttons.forEach( (button, index) => {
     button.addEventListener('click', () => {
