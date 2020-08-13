@@ -19,7 +19,7 @@
             margin: 50px 50px;
         }
 
-        .button:hover {
+        .button :hover {
             background-color: darkgray;
         }
 
@@ -32,23 +32,58 @@
 <body>
 
     <div class="container">
-       <div class="button" onclick="playSound(sound0)"></div>
-       <div class="button" onclick="playSound(sound1)"></div>
-       <div class="button" onclick="playSound(sound2)"></div>
-       <div class="button" onclick="playSound(sound3)"></div>
+
     </div>
 
 </body>
 
 <script>
-const sound0 = new Howl({ src: 'sounds/0.mp3' });
-const sound1 = new Howl({ src: 'sounds/1.mp3' });
-const sound2 = new Howl({ src: 'sounds/2.mp3' });
-const sound3 = new Howl({ src: 'sounds/3.mp3' });
-console.log(sound0);
+    // a function that takes a sound in and plays it
 const playSound = (sound) => {
     sound.play();
 }
+//our function to get a random color
+const getRandomColor = () => `#${Math.floor(Math.random()*16777215).toString(16)}`; 
+
+//we can change the number of sounds if we add more sound to the folder.
+// a new button will be automagically added!
+const numSounds = 4;
+const sounds = Array.from({ length: numSounds}, (e, i) => new Howl({ src: `sounds/${i}.mp3`, html5: false, volume: 0.9, loop: false }));
+//let's make an array of random colors
+const colors = Array.from({ length: numSounds }, () => getRandomColor() );
+console.log(colors);
+//grab our container
+const container = document.querySelector('.container');
+//the number of buttons will increase if the number of sounds is
+const numButtons = numSounds;
+//make our divs
+//first let's make the function to make the divs -- and let's give it a random color
+const makeDiv = (index) => {
+    div = document.createElement('div');
+    div.className='button';
+    div.style.backgroundColor = colors[index];
+
+    return div
+    };
+//now we use the function
+const buttons = Array.from({ length: numButtons}, (element, index) => makeDiv(index));
+console.log(buttons);
+//add the buttons to the container
+buttons.forEach(button => container.appendChild(button));
+//add an event listener to each button
+buttons.forEach( (button, index) => {
+    button.addEventListener('click', () => {
+        playSound(sounds[index])
+    })
+    button.addEventListener('mouseover', () => {
+        button.style.backgroundColor='lightgrey';
+    })
+    button.addEventListener('mouseout', () => {
+        button.style.backgroundColor=colors[index];
+    })
+})
+
+
 
 </script>
 </html>
