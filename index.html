@@ -33,12 +33,18 @@
 
     <div class="container">
        <div class="button" onclick="playSound(sound0)"></div>
+       <div class="button" onclick="playSound(sound1)"></div>
+       <div class="button" onclick="playSound(sound2)"></div>
+       <div class="button" onclick="playSound(sound3)"></div>
     </div>
 
 </body>
 
 <script>
 const sound0 = new Howl({ src: 'sounds/0.mp3' });
+const sound1 = new Howl({ src: 'sounds/1.mp3' });
+const sound2 = new Howl({ src: 'sounds/2.mp3' });
+const sound3 = new Howl({ src: 'sounds/3.mp3' });
 console.log(sound0);
 const playSound = (sound) => {
     sound.play();
