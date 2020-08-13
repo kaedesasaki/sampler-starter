@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+
+        .container {
+            display: flex;
+        }
+
+        .button {
+            background-color: lightblue;
+            width: 100px;
+            height: 100px;
+            border-radius: 3px;
+            border: 6px solid darkblue;
+            margin: 50px 50px;
+        }
+
+        .button:hover {
+            background-color: darkgray;
+        }
+
+    </style>
+
+    <script src="libs/howler.js"></script>
+
+    <title>sampler</title>
+</head>
+<body>
+
+    <div class="container">
+       <div class="button" onclick="playSound0()"></div>
+    </div>
+
+</body>
+
+<script>
+const sound0 = new Howl({ src: 'sounds/0.mp3' });
+console.log(mySound);
+const playSound0 = () => {
+    sound0.play();
+}
+
+</script>
+</html>
